@@ -2,6 +2,7 @@ package com.cvinsight.cv.parser;
 
 import com.cvinsight.model.CV;
 import com.cvinsight.model.CVStatus;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -17,7 +18,7 @@ public class PDFCVParser extends AbstractCVParser {
         }
 
         String rawText;
-        try (PDDocument document = PDDocument.load(file)) {
+        try (PDDocument document = Loader.loadPDF(file)) {
             PDFTextStripper stripper = new PDFTextStripper();
             rawText = stripper.getText(document);
         } catch (IOException e) {
